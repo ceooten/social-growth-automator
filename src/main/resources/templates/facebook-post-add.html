@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Facebook | Add Post</title>
+</head>
+<body>
+<form action="#" th:action="@{/facebook/add-post}" th:object="${facebookPost}" method="post">
+    <label for="message">Message</label>
+    <input type="text" th:field="*{message}" id="message" placeholder="message">
+    <span th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></span>
+    <label for="url">URL</label>
+    <input type="text" th:field="*{url}" id="url" placeholder="http://url">
+    <span th:if="${#fields.hasErrors('url')}" th:errors="*{url}"></span>
+    <label for="facebookPostType">Post Type</label>
+    <input type="text" th:field="*{facebookPostType}" id="facebookPostType" placeholder="post type">
+    <span th:if="${#fields.hasErrors('facebookPostType')}" th:errors="*{facebookPostType}"></span>
+    <input type="submit" value="Add Post">
+</form>
+<button onclick='window.history.back()'>Cancel</button>
+</body>
+</html>
