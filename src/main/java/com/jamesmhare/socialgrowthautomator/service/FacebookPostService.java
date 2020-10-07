@@ -3,15 +3,33 @@ package com.jamesmhare.socialgrowthautomator.service;
 import com.jamesmhare.socialgrowthautomator.model.facebook.FacebookPost;
 import com.jamesmhare.socialgrowthautomator.model.facebook.FacebookPostType;
 import com.jamesmhare.socialgrowthautomator.repository.FacebookPostRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class FacebookPostService {
 
+    private final Logger log = LoggerFactory.getLogger(FacebookPostService.class);
     private final FacebookPostRepository facebookPostRepository;
+    final static String facebookGraphHost = "https://graph.facebook.com";
+    final static String pathPhotos = "/v8.0/943292752388942/photos";
+    final static String access_token = "EAAni3PIZCwREBAPxuZAgMv0M6aRZAqCKuC1uzT3Yz8gSuy4OuuEkJiB6iYToBHVT2d5iZAUR7m9v4JVwen6819MHoVbJYWdj7jEIX5uBvnLzDjwysFTF6D1ck306VBYdEKHfp2uN0iSyBYJSdJrXVEbnsb2NpEkTaYrRILhmGbUmeZBudqUPkRd0DF5zocjcZD";
+    final static HttpClient httpClient = HttpClient.newBuilder()
+            .version(HttpClient.Version.HTTP_2)
+            .build();
 
     public FacebookPostService(final FacebookPostRepository facebookPostRepository) {
         this.facebookPostRepository = facebookPostRepository;
@@ -35,6 +53,70 @@ public class FacebookPostService {
 
     public FacebookPost getImagePost() {
         return facebookPostRepository.findFirstByFacebookPostType(FacebookPostType.IMAGE);
+    }
+
+    public boolean publishRandomPost(FacebookPost post) {
+        switch(post.getFacebookPostType()) {
+            case IMAGE:
+                return publishImagePost(post);
+            case ARTICLE:
+                return publishArticlePost(post);
+            case VIDEO:
+                return publishVideoPost(post);
+            default:
+                return false;
+        }
+    }
+
+    public boolean publishImagePost(FacebookPost post) {
+        // form parameters
+        Map<Object, Object> data = new HashMap<>();
+        data.put("message", post.getMessage());
+        data.put("url", post.getUrl());
+        data.put("access_token", access_token);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .POST(buildFormDataFromMap(data))
+                .uri(URI.create(facebookGraphHost + pathPhotos))
+                .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .build();
+
+        try {
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() == 200) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (IOException | InterruptedException e) {
+            log.error("There was an issue posting to the Facebook API. " + e);
+        }
+        return false;
+    }
+
+    public boolean publishArticlePost(FacebookPost post) {
+        // TODO: implement
+        return false;
+    }
+
+    public boolean publishVideoPost(FacebookPost post) {
+        // TODO: implement
+        return false;
+    }
+
+    private static HttpRequest.BodyPublisher buildFormDataFromMap(Map<Object, Object> data) {
+        var builder = new StringBuilder();
+        for (Map.Entry<Object, Object> entry : data.entrySet()) {
+            if (builder.length() > 0) {
+                builder.append("&");
+            }
+            builder.append(URLEncoder.encode(entry.getKey().toString(), StandardCharsets.UTF_8));
+            builder.append("=");
+            builder.append(URLEncoder.encode(entry.getValue().toString(), StandardCharsets.UTF_8));
+        }
+        System.out.println(builder.toString());
+        return HttpRequest.BodyPublishers.ofString(builder.toString());
     }
 
 }

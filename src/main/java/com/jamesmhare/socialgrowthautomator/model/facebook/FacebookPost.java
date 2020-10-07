@@ -1,9 +1,6 @@
 package com.jamesmhare.socialgrowthautomator.model.facebook;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Entity
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class FacebookPost {
@@ -27,5 +25,11 @@ public class FacebookPost {
     private String message;
     @NotNull
     private String url;
+
+    public FacebookPost(String message, String url) {
+        this.message = message;
+        this.url = url;
+        this.facebookPostType = FacebookPostType.IMAGE; // TODO: remove this after testing
+    }
 
 }

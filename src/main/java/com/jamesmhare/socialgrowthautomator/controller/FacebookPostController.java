@@ -1,6 +1,7 @@
 package com.jamesmhare.socialgrowthautomator.controller;
 
 import com.jamesmhare.socialgrowthautomator.model.facebook.FacebookPost;
+import com.jamesmhare.socialgrowthautomator.repository.initializer.PostCollection;
 import com.jamesmhare.socialgrowthautomator.service.FacebookPostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 @Controller
@@ -23,6 +25,13 @@ public class FacebookPostController {
 
     public FacebookPostController(final FacebookPostService facebookPostService) {
         this.facebookPostService = facebookPostService;
+    }
+
+    @PostConstruct
+    public void init() {
+        for (FacebookPost post : PostCollection.posts) {
+            facebookPostService.savePost(post);
+        }
     }
 
     @GetMapping("/dashboard")
