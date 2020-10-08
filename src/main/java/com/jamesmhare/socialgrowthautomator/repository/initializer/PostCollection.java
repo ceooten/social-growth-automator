@@ -8,9 +8,6 @@ import java.util.List;
 public class PostCollection {
 
     public static List<FacebookPost> posts = Arrays.asList(
-            new FacebookPost("Where in WDW is this?", "https://images.unsplash.com/photo-1575072075952-a2ae92b9c160?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
-            new FacebookPost("Where in WDW is this?", "https://images.unsplash.com/photo-1590852180284-00c0fb98c7cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
-            new FacebookPost("What is your favorite firework show at WDW?", "https://images.unsplash.com/photo-1594916724272-9c043bc5a94f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
             new FacebookPost("Spaceship Earth is looking good today!", "https://images.unsplash.com/photo-1489367753387-4a80734cbc3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
             new FacebookPost("What is your favorite Disney castle?", "https://images.unsplash.com/photo-1578230706129-5e3ebca647d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
             new FacebookPost("Cinderella Castle in the Moonlight", "https://images.unsplash.com/photo-1556950961-8c092986258e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),

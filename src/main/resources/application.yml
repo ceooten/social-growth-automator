@@ -11,3 +11,8 @@ info:
     name: '@project.name@'
     description: '@project.description@'
     version: '@project.version@'
+social-growth-automator:
+  config:
+    facebook:
+      access-token: ${FB_ACCESS_TOKEN}
+      account-number: ${FB_ACCOUNT_NUMBER}

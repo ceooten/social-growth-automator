@@ -20,7 +20,7 @@ public class FacebookTask {
     }
 
     // TODO sort out this cron job
-    @Scheduled(cron = "0 0 8,10,12,14,16,20,22 ? * *")
+    @Scheduled(cron = "0 0 14,16,18,20,22,0,2 ? * *")
     public void postImageTask() {
         final FacebookPost post = facebookPostService.getImagePost();
         if (post.getId() != null) {

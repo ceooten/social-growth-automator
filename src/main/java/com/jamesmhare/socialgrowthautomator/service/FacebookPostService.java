@@ -1,10 +1,12 @@
 package com.jamesmhare.socialgrowthautomator.service;
 
+import com.jamesmhare.socialgrowthautomator.config.SGAFacebookProperties;
 import com.jamesmhare.socialgrowthautomator.model.facebook.FacebookPost;
 import com.jamesmhare.socialgrowthautomator.model.facebook.FacebookPostType;
 import com.jamesmhare.socialgrowthautomator.repository.FacebookPostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,19 +22,21 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+@EnableConfigurationProperties(SGAFacebookProperties.class)
 public class FacebookPostService {
 
     private final Logger log = LoggerFactory.getLogger(FacebookPostService.class);
     private final FacebookPostRepository facebookPostRepository;
-    final static String facebookGraphHost = "https://graph.facebook.com";
-    final static String pathPhotos = "/v8.0/943292752388942/photos";
-    final static String access_token = "EAAni3PIZCwREBAPxuZAgMv0M6aRZAqCKuC1uzT3Yz8gSuy4OuuEkJiB6iYToBHVT2d5iZAUR7m9v4JVwen6819MHoVbJYWdj7jEIX5uBvnLzDjwysFTF6D1ck306VBYdEKHfp2uN0iSyBYJSdJrXVEbnsb2NpEkTaYrRILhmGbUmeZBudqUPkRd0DF5zocjcZD";
+    final static String facebookGraphHost = "https://graph.facebook.com/v8.0/";
+    final static String pathPhotos = "/photos";
+    final SGAFacebookProperties properties;
     final static HttpClient httpClient = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
             .build();
 
-    public FacebookPostService(final FacebookPostRepository facebookPostRepository) {
+    public FacebookPostService(final FacebookPostRepository facebookPostRepository, final SGAFacebookProperties properties) {
         this.facebookPostRepository = facebookPostRepository;
+        this.properties = properties;
     }
 
     public Optional<FacebookPost> getPost(final Long id) {
@@ -73,11 +77,11 @@ public class FacebookPostService {
         Map<Object, Object> data = new HashMap<>();
         data.put("message", post.getMessage());
         data.put("url", post.getUrl());
-        data.put("access_token", access_token);
+        data.put("access_token", properties.getAccessToken());
 
         HttpRequest request = HttpRequest.newBuilder()
                 .POST(buildFormDataFromMap(data))
-                .uri(URI.create(facebookGraphHost + pathPhotos))
+                .uri(URI.create(facebookGraphHost + properties.getAccountNumber() + pathPhotos))
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .build();
