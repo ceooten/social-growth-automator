@@ -13,6 +13,9 @@ info:
     version: '@project.version@'
 social-growth-automator:
   config:
+    user:
+      username: ${ADMIN_USERNAME}
+      password: ${ADMIN_PASSWORD}
     facebook:
       access-token: ${FB_ACCESS_TOKEN}
       account-number: ${FB_ACCOUNT_NUMBER}

@@ -1,4 +1,4 @@
-package com.jamesmhare.socialgrowthautomator.config;
+package com.jamesmhare.socialgrowthautomator.config.properties;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -8,13 +8,6 @@ import java.util.List;
 public class PostCollection {
 
     public static List<FacebookPost> posts = Arrays.asList(
-            new FacebookPost("Spaceship Earth is looking good today!", "https://images.unsplash.com/photo-1489367753387-4a80734cbc3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
-            new FacebookPost("What is your favorite Disney castle?", "https://images.unsplash.com/photo-1578230706129-5e3ebca647d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
-            new FacebookPost("Cinderella Castle in the Moonlight", "https://images.unsplash.com/photo-1556950961-8c092986258e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
-            new FacebookPost("It's Smee!", "https://images.unsplash.com/photo-1571682078004-dd5414a10401?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
-            new FacebookPost("Where in WDW is this?", "https://images.unsplash.com/photo-1571672346827-ee4040cdd7d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
-            new FacebookPost("Who else is ready to see some fireworks?", "https://images.unsplash.com/photo-1533749881293-5eedf2b1881b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
-            new FacebookPost("Beautiful!", "https://images.unsplash.com/photo-1578230706275-cb6f4e14b299?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
             new FacebookPost("Where in WDW is this?", "https://images.unsplash.com/photo-1600738519549-97c29c0ea552?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
             new FacebookPost("Where in WDW is this?", "https://images.unsplash.com/photo-1489367966527-6b20c16a2ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
             new FacebookPost("Post a photo of your Mickey Ears!", "https://images.unsplash.com/photo-1542839764-7cbd13228589?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),

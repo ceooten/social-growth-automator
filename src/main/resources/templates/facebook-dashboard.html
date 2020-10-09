@@ -7,5 +7,8 @@
 <body>
 <p><a href="/facebook/new-post">Add a post</a></p>
 <p><a href="/facebook/manage-posts">Manage posts</a></p>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 </body>
 </html>

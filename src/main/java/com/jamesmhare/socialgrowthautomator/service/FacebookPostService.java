@@ -1,6 +1,6 @@
 package com.jamesmhare.socialgrowthautomator.service;
 
-import com.jamesmhare.socialgrowthautomator.config.SGAFacebookProperties;
+import com.jamesmhare.socialgrowthautomator.config.properties.SGAFacebookProperties;
 import com.jamesmhare.socialgrowthautomator.model.facebook.FacebookPost;
 import com.jamesmhare.socialgrowthautomator.model.facebook.FacebookPostType;
 import com.jamesmhare.socialgrowthautomator.repository.FacebookPostRepository;
