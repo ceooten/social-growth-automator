@@ -5,6 +5,23 @@ spring:
     active: "dev"
   main:
     banner-mode: "off"
+  datasource:
+    url: "jdbc:mysql://localhost:3306/sga"
+    username: "service_java"
+    password: "java"
+  jpa:
+    hibernate:
+      ddl-auto: 'update'
+  mail:
+    host: smtp.gmail.com
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    port: 587
+    mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
 info:
   build:
     artifact: '@project.artifactId@'
@@ -12,10 +29,6 @@ info:
     description: '@project.description@'
     version: '@project.version@'
 social-growth-automator:
-  config:
-    user:
-      username: ${ADMIN_USERNAME}
-      password: ${ADMIN_PASSWORD}
     facebook:
       access-token: ${FB_ACCESS_TOKEN}
       account-number: ${FB_ACCOUNT_NUMBER}

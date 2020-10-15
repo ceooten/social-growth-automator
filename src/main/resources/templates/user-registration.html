@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>User | Register</title>
+</head>
+<body>
+<form th:action="@{/user/register}" th:object="${user}" method="post">
+    <label for="email">Email</label>
+    <input type="text" th:field="*{email}" id="email" placeholder="name@example.com">
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    <label for="username">Username</label>
+    <input type="text" th:field="*{username}" id="username" placeholder="username">
+    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>
